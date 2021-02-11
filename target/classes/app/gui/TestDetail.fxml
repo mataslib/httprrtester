@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.ScrollPane ?>
+
+<?import javafx.scene.layout.HBox?>
+<fx:root type="ScrollPane"
+         xmlns="http://javafx.com/javafx/11.0.1"
+         xmlns:fx="http://javafx.com/fxml/1"
+         fitToWidth="true"
+>
+  <VBox>
+    <Text strokeType="OUTSIDE"
+          strokeWidth="0.0"
+          text="Výsledek testu"/>
+
+    <HBox>
+      <Text
+        strokeType="OUTSIDE"
+        strokeWidth="0.0"
+        text="Délka testu: "
+      />
+      <Text fx:id="totalTime"
+            strokeType="OUTSIDE"
+            strokeWidth="0.0"
+      />
+    </HBox>
+
+    <HBox>
+      <Text
+        strokeType="OUTSIDE"
+        strokeWidth="0.0"
+        text="Délka requestu: "
+      />
+      <Text fx:id="requestTime"
+            strokeType="OUTSIDE"
+            strokeWidth="0.0"
+      />
+    </HBox>
+
+    <Text strokeType="OUTSIDE"
+          strokeWidth="0.0"
+          text="Odpověď"/>
+    <TextArea fx:id="response"
+              editable="false"
+    />
+    <Text strokeType="OUTSIDE"
+          strokeWidth="0.0"
+          text="Úspěšné testy"/>
+    <TextArea fx:id="successfulTests"
+              editable="false"
+    />
+    <Text strokeType="OUTSIDE"
+          strokeWidth="0.0"
+          text="Neúspěšné testy"/>
+    <TextArea fx:id="failedTests"
+              editable="false"
+    />
+  </VBox>
+</fx:root>

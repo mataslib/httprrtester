@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import app.gui.MainPane?>
+<?import app.gui.TestsTreeView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<SplitPane dividerPositions="0.3"
+           prefHeight="1000"
+           prefWidth="1000"
+           xmlns="http://javafx.com/javafx/11.0.1"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="app.gui.MainGuiController">
+  <TestsTreeView fx:id="testsTreeView"/>
+  <GridPane>
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES"/>
+    </columnConstraints>
+    <rowConstraints>
+      <RowConstraints vgrow="SOMETIMES"/>
+      <RowConstraints vgrow="ALWAYS"/>
+    </rowConstraints>
+    <children>
+      <HBox>
+        <Button minWidth="-Infinity"
+                mnemonicParsing="false"
+                onAction="#handleRefresh"
+                text="🗘 Obnovit"/>
+        <Button fx:id="startTestsButton"
+                minWidth="-Infinity"
+                mnemonicParsing="false"
+                onAction="#handleStartTests"
+                text="▶ Spustit"/>
+        <ProgressBar fx:id="testsProgressBar"
+                     minHeight="26.0"
+                     minWidth="0"
+                     prefWidth="200.0"/>
+        <Button fx:id="stopTestsButton"
+                minWidth="-Infinity"
+                mnemonicParsing="false"
+                onAction="#handleStopTests"
+                text="⏹ Zastavit"/>
+        <Pane HBox.hgrow="ALWAYS"/>
+        <Button onAction="#handleSettingsClick"
+                minWidth="-Infinity"
+                mnemonicParsing="false"
+                text="⚙ Nastavení"/>
+      </HBox>
+      <MainPane fx:id="mainPane"
+                GridPane.rowIndex="1"/>
+    </children>
+  </GridPane>
+
+</SplitPane>

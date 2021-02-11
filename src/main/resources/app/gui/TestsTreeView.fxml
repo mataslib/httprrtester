@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<fx:root
+  type="GridPane"
+  xmlns="http://javafx.com/javafx/11.0.1"
+  xmlns:fx="http://javafx.com/fxml/1">
+  <!--  <Pane style="-fx-background-color: pink">-->
+  <TextField fx:id="searchInput"
+             onAction="#handleSearchEnter"
+             alignment="TOP_LEFT"
+             promptText="Hledat..."/>
+  <TreeView fx:id="treeView"
+            GridPane.rowIndex="1"
+            VBox.vgrow="ALWAYS"/>
+  <columnConstraints>
+    <ColumnConstraints hgrow="ALWAYS"/>
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints vgrow="NEVER"/>
+    <RowConstraints vgrow="ALWAYS"/>
+  </rowConstraints>
+  <!--  </Pane>-->
+</fx:root>

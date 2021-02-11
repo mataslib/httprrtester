@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="between" type="predicateBetween"/>
+
+  <xs:element name="contains" type="predicateContains"/>
+
+  <xs:element name="equal" nillable="true" type="xs:anyType"/>
+
+  <xs:element name="less-than" type="predicateLessThan"/>
+
+  <xs:element name="test" type="testDefinition"/>
+
+  <xs:element name="test-body" type="testBody"/>
+
+  <xs:element name="test-header" type="testHeader"/>
+
+  <xs:element name="test-json-path-exist" type="testJsonPathExist"/>
+
+  <xs:element name="test-status-code" type="testsStatusCode"/>
+
+  <xs:element name="test-time" type="testTime"/>
+
+  <xs:element name="test-valid-html" type="testValidHtml"/>
+
+  <xs:element name="test-working-links" type="testWorkingLinks"/>
+
+  <xs:element name="test-xpath-exist" type="testXpathExist"/>
+
+  <xs:complexType name="testDefinition">
+    <xs:sequence>
+      <xs:element name="request" type="request"/>
+      <xs:element name="response" type="response" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="request">
+    <xs:sequence>
+      <xs:element name="url" type="xs:string"/>
+      <xs:element name="method" type="methodEnum" minOccurs="0"/>
+      <xs:element name="header" type="header" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="body" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="header">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="key" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="response">
+    <xs:sequence>
+      <xs:element name="tests" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+              <xs:element ref="test-valid-html"/>
+              <xs:element ref="test-working-links"/>
+              <xs:element ref="test-json-path-exist"/>
+              <xs:element ref="test-xpath-exist"/>
+              <xs:element ref="test-status-code"/>
+              <xs:element ref="test-time"/>
+              <xs:element ref="test-body"/>
+              <xs:element ref="test-header"/>
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="testValidHtml">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="testWorkingLinks">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="testJsonPathExist">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="negate" type="xs:boolean" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="testXpathExist">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="negate" type="xs:boolean" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="testsStatusCode">
+    <xs:choice>
+      <xs:element ref="equal"/>
+      <xs:element ref="between"/>
+      <xs:element ref="less-than"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:simpleType name="predicateEqualNumbers">
+    <xs:restriction base="xs:double"/>
+  </xs:simpleType>
+
+  <xs:complexType name="predicateBetween">
+    <xs:sequence>
+      <xs:element name="lower" type="xs:double" minOccurs="0"/>
+      <xs:element name="upper" type="xs:double" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="predicateLessThan">
+    <xs:restriction base="xs:double"/>
+  </xs:simpleType>
+
+  <xs:complexType name="testTime">
+    <xs:sequence>
+      <xs:element ref="less-than"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="testBody">
+    <xs:choice>
+      <xs:element ref="equal"/>
+      <xs:element ref="contains"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:simpleType name="predicateEqualStrings">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="predicateContains">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+
+  <xs:complexType name="testHeader">
+    <xs:choice>
+      <xs:element ref="equal"/>
+      <xs:element ref="contains"/>
+    </xs:choice>
+    <xs:attribute name="key" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:simpleType name="methodEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="GET"/>
+      <xs:enumeration value="HEAD"/>
+      <xs:enumeration value="POST"/>
+      <xs:enumeration value="PUT"/>
+      <xs:enumeration value="PATCH"/>
+      <xs:enumeration value="DELETE"/>
+      <xs:enumeration value="CONNECT"/>
+      <xs:enumeration value="OPTIONS"/>
+      <xs:enumeration value="TRACE"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+

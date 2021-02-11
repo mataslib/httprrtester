@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.layout.RowConstraints?>
+<fx:root
+  type="GridPane"
+  xmlns="http://javafx.com/javafx/11.0.1"
+  xmlns:fx="http://javafx.com/fxml/1"
+>
+  <columnConstraints>
+    <ColumnConstraints hgrow="ALWAYS"/>
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints vgrow="ALWAYS"/>
+  </rowConstraints>
+</fx:root>
